@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="theme-color" content="#ffb6c1">
+    <title>100 Razones para amarte 🩷💙</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Fondo interactivo -->
+    <div class="gradient-bg"></div>
+    
+    <!-- Pantalla de Inicio -->
+    <div class="intro-screen">
+        <div class="intro-content">
+            <div class="hearts-container">
+                <span class="heart pink">❤️</span>
+                <h1>100 Razones para amarte 🩷💙</h1>
+                <span class="heart blue">💙</span>
+            </div>
+            <button class="start-btn">Comenzar</button>
+        </div>
+    </div>
+
+    <!-- Carrusel Principal -->
+    <div class="carousel-container">
+        <button class="nav-btn prev-btn">←</button>
+        
+        <div class="carousel">
+            <div class="carousel-inner">
+                <!-- Las 100 razones se generan aquí -->
+            </div>
+        </div>
+        
+        <button class="nav-btn next-btn">→</button>
+        
+        <!-- SOLO INDICADORES - SIN FLECHAS -->
+        <div class="carousel-indicators-wrapper">
+            <div class="carousel-indicators">
+                <!-- Los 100 puntos se generan aquí -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="expanded-img">
+        <div class="modal-caption"></div>
+        <button class="download-btn">Descargar Imagen</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
