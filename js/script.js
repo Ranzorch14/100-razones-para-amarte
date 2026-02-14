@@ -410,3 +410,65 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselContainer.style.display = 'none';
     initializeCarousel();
 });
+// ===== 🎵 BOTÓN DE MÚSICA CON REPRODUCCIÓN AUTOMÁTICA =====
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('musicToggle');
+    const musicIcon = document.querySelector('.music-icon');
+    
+    // Configuración inicial
+    audio.volume = 0.3; // Volumen moderado
+    audio.muted = false; // NO silenciado
+    
+    // ESTRATEGIA PARA REPRODUCIR AUTOMÁTICAMENTE
+    function playAudio() {
+        audio.play()
+            .then(() => {
+                console.log("🎵 Música reproduciéndose automáticamente");
+                musicIcon.textContent = '🔊';
+                toggleBtn.classList.remove('muted');
+            })
+            .catch(error => {
+                console.log("❌ No se pudo reproducir automáticamente:", error);
+                // Si no puede reproducir, mostrar botón en mute
+                musicIcon.textContent = '🔇';
+                toggleBtn.classList.add('muted');
+                
+                // Intentar reproducir cuando el usuario haga clic en cualquier parte
+                document.body.addEventListener('click', function playOnClick() {
+                    audio.play();
+                    musicIcon.textContent = '🔊';
+                    toggleBtn.classList.remove('muted');
+                    document.body.removeEventListener('click', playOnClick);
+                }, { once: true });
+            });
+    }
+    
+    // Intentar reproducir inmediatamente
+    playAudio();
+    
+    // También intentar reproducir cuando el usuario interactúa con el botón de inicio
+    const startBtn = document.querySelector('.start-btn');
+    if (startBtn) {
+        startBtn.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+            }
+        });
+    }
+    
+    // Botón de silenciar/activar
+    toggleBtn.addEventListener('click', () => {
+        if (audio.muted || audio.paused) {
+            audio.muted = false;
+            audio.play();
+            musicIcon.textContent = '🔊';
+            toggleBtn.classList.remove('muted');
+        } else {
+            audio.muted = true;
+            audio.pause();
+            musicIcon.textContent = '🔇';
+            toggleBtn.classList.add('muted');
+        }
+    });
+});
